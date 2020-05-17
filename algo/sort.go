@@ -65,6 +65,17 @@ func SelectSortV2(items []int) []int {
 	return items
 }
 
+func SelectSortV3(items []int) []int {
+	for i := 0; i < len(items)-1; i++ {
+		for j := i + 1; j < len(items); j++ {
+			if items[j] < items[i] {
+				swap(items, j, i)
+			}
+		}
+	}
+	return items
+}
+
 // 3. 插入排序
 
 func InsertSort(items []int) []int {
