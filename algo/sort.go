@@ -8,9 +8,9 @@ func swap(items []int, i, j int) {
 
 // 1. 冒泡排序
 // 算法描述
-// 1.1  从 0 到 (待排序数组的长度 -2) ，依次比较相邻的一对元素大小，如果items[j] < items [j+1], 交换两个元素的值。
+// 1.1 index 从 0 到 (待排序数组的长度 -2) ，依次比较相邻的一对元素大小，如果items[j] < items [j+1], 交换两个元素的值。
 // 1.2 当 j = (待排序数组的长度 -2) 时，一轮排序完成，此时数组最后一个元素为最大值，待排序的数组长度减一。
-// 1.3 重复上述步骤，已完成排序轮数，可以用i 记录，完成一轮后，i 自加 1。
+// 1.3 重复上述步骤，已完成排序轮数，可以用 i 记录，完成一轮后，i 自加 1。
 func BubbleSort(items []int) []int {
 
 	for i, _ := range items {
@@ -220,4 +220,58 @@ func MergeSortBU(items []int) []int {
 		}
 	}
 	return items
+}
+
+// 快速排序
+// 1. 使用左右指针（i，j），分别寻找大于，小于 pivot 的位置。
+// 2. 左指针的值小于等于 pivot 时，左指针++（i++），往右移动，直至值大于 pivot。
+// 3. 右指针的值大于 pivot 值时，右指针-- （j--），往左移动，直至值小于 pivot。
+// 4. 当出现 a[i] > pivot, a[j] < pivot 是时交换 i，j，此时依然满足 a[i] <= pivot , a[j] > pivot, 2，3 步骤继续。
+// 5. 当 j <= i 时，整个数组扫描完成，交换 j 值 和 pivot 值。
+
+// 一定 return j 指针。此时分区为 [lo，j-1],[j],[j+1,hi]
+// 再次 partition 区间，[lo，j-1] ,[j+1,hi]
+func partition(items []int, lo, hi int) int {
+
+	i := lo
+	j := hi + 1
+	v := items[lo]
+
+	for {
+
+		for {
+			i++
+			if items[i] > v || i >= hi {
+				break
+			}
+		}
+
+		for {
+			j--
+			if items[j] < v || j <= lo {
+				break
+			}
+		}
+
+		if j <= i {
+			break
+		}
+		swap(items, i, j)
+
+	}
+
+	swap(items, lo, j)
+	return j
+}
+
+func QuickSort(items []int, lo, hi int) {
+
+	if hi <= lo {
+		return
+	}
+
+	pivot := partition(items, lo, hi)
+	QuickSort(items, lo, pivot-1)
+	QuickSort(items, pivot+1, hi)
+
 }
