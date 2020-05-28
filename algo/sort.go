@@ -1,6 +1,9 @@
 package algo
 
 func swap(items []int, i, j int) {
+	if i == j {
+		return
+	}
 	tmp := items[i]
 	items[i] = items[j]
 	items[j] = tmp
@@ -39,63 +42,17 @@ func SelectSort(items []int) []int {
 				minIndex = j
 			}
 		}
-		tmp := items[i]
-		items[i] = items[minIndex]
-		items[minIndex] = tmp
+		swap(items, i, minIndex)
 	}
 
-	return items
-}
-
-func SelectSortV2(items []int) []int {
-	for i := 0; i < len(items)-1; i++ {
-		minIndex := i + 1
-		for j := minIndex + 1; j < len(items); j++ {
-			if items[j] < items[minIndex] {
-				minIndex = j
-			}
-		}
-		if items[i] > items[minIndex] {
-			tmp := items[i]
-			items[i] = items[minIndex]
-			items[minIndex] = tmp
-		}
-	}
-
-	return items
-}
-
-func SelectSortV3(items []int) []int {
-	for i := 0; i < len(items)-1; i++ {
-		for j := i + 1; j < len(items); j++ {
-			if items[j] < items[i] {
-				swap(items, j, i)
-			}
-		}
-	}
 	return items
 }
 
 // 3. 插入排序
 
 func InsertSort(items []int) []int {
-	for i := 1; i < len(items); i++ {
-		processedIndex := i - 1
-		current := items[i]
 
-		// 注意 processedIndex 可能会被自减到 -1
-		for ; processedIndex >= 0 && items[processedIndex] > current; {
-			items[processedIndex+1] = items[processedIndex]
-			processedIndex--
-		}
-		// 注意 index 要加 1
-		items[processedIndex+1] = current
-	}
-	return items
-}
-
-func InsertSortV2(items []int) []int {
-
+	// 将 a[i] 插入到 a[i-1], a[i-2], a[i-3] ... 中
 	for i := 1; i < len(items); i++ {
 		for j := i; j > 0 && items[j] < items[j-1]; j-- {
 			swap(items, j, j-1)

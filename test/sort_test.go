@@ -29,27 +29,8 @@ func TestSelectSort(t *testing.T) {
 	}
 }
 
-func TestSelectSortV2(t *testing.T) {
-	inputItems := []int{2, 1, 0, 6, 3, 5, 7, 4}
-	outputItems := []int{0, 1, 2, 3, 4, 5, 6, 7}
 
-	res := algo.SelectSortV2(inputItems)
-	if !reflect.DeepEqual(inputItems, outputItems) {
-		fmt.Println(res)
-		t.Error()
-	}
-}
 
-func TestSelectSortV3(t *testing.T) {
-	inputItems := []int{2, 1, 0, 6, 3, 5, 7, 4}
-	outputItems := []int{0, 1, 2, 3, 4, 5, 6, 7}
-
-	res := algo.SelectSortV3(inputItems)
-	if !reflect.DeepEqual(inputItems, outputItems) {
-		fmt.Println(res)
-		t.Error()
-	}
-}
 
 func TestInsertSort(t *testing.T) {
 	inputItems := []int{2, 1, 0, 6, 3, 5, 7, 4}
@@ -62,16 +43,6 @@ func TestInsertSort(t *testing.T) {
 	}
 }
 
-func TestInsertSortV2(t *testing.T) {
-	inputItems := []int{2, 1, 0, 6, 3, 5, 7, 4}
-	outputItems := []int{0, 1, 2, 3, 4, 5, 6, 7}
-
-	res := algo.InsertSortV2(inputItems)
-	if !reflect.DeepEqual(inputItems, outputItems) {
-		fmt.Println(res)
-		t.Error()
-	}
-}
 
 func TestShellSortV2(t *testing.T) {
 	inputItems := []int{2, 1, 0, 6, 3, 5, 7, 4}
