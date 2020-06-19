@@ -213,6 +213,8 @@ func partition(items []int, lo, hi int) int {
 		if j <= i {
 			break
 		}
+		// 此时 i 找一个一个比 pivot 大的，j 找一个比 pivot 小的，两者交换
+		// 注意：交换后，i 位置的数值比 pivot 小，而 j 位置的 数值又比 pivot 大，进而又可以开始第二轮寻宝。
 		swap(items, i, j)
 
 	}
